@@ -128,7 +128,7 @@ todoRouter.delete("/:title", isAuthenticated, (req, res) => {
 		.readData()
 		.then((dataArr) => {
 			const idx = dataArr.findIndex((todo) => {
-				return todo.title === title
+				return todo.title.toLowerCase() === title
 			})
 
 			if (idx != -1) {
@@ -143,6 +143,9 @@ todoRouter.delete("/:title", isAuthenticated, (req, res) => {
 				error: null,
 			})
 		})
+})
+todoRouter.delete("/deleteMany", (req, res) => {
+	const titleArr = req.body
 })
 
 module.exports = todoRouter

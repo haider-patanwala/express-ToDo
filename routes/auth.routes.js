@@ -18,7 +18,7 @@ router.post(
 		})
 		.withMessage("Name should be of minimum 3 characters."),
 	body("email")
-	.custom((email) => {
+		.custom((email) => {
 			if (typeof email === "string") {
 				return true
 			}
@@ -35,11 +35,10 @@ router.post(
 			return false
 		})
 		.withMessage("Password should be of minimum 8 characters."),
-	(req, res) => {
+	async (req, res) => {
 		const { name, email, password } = req.body
 
 		const errors = validationResult(req)
-
 
 		if (!errors.isEmpty()) {
 			return res.status(400).json({
@@ -48,8 +47,8 @@ router.post(
 				data: {},
 			})
 		}
-// try{
-			// const salt = await bcrypt.genSalt(10)
+		// try{
+		// const salt = await bcrypt.genSalt(10)
 
 		let hashedPassword = await bcrypt.hashSync(password, 10)
 
@@ -66,11 +65,12 @@ router.post(
 			message: "User registration successful.",
 			error: null,
 			data: {
-							newUser,
-							access_token: token,
-							user: newUser.name,},
+				newUser,
+				access_token: token,
+				user: newUser.name,
+			},
 		})
-	
+
 		// catch (error) {
 		// 	console.error("Error: ", error.message)
 		// 	res.status(500).send("Internal server error occured.")
