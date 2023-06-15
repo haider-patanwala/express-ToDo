@@ -8,7 +8,7 @@
     "start:dev": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Haider .P",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
