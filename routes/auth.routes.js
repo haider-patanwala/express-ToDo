@@ -54,12 +54,16 @@ router.post(
 
 		console.log(hashedPassword)
 		console.log(password)
-		USER.push({
+		const newUser = {
 			name: name,
 			email: email,
 			password: hashedPassword,
-		})
+		}
+		USER.push(newUser)
 		writeUsers(USER)
+
+		// create access tokens
+		let token = JWT.sign({ email }, SECRET)
 
 		return res.status(201).json({
 			message: "User registration successful.",
