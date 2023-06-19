@@ -18,16 +18,16 @@ app.use(express.json())
 
 // hello world API call for our server/app
 app.get("/greetings", (req, res) => {
-    return res.send("Greetings from Todo App.")
+	return res.send("Greetings from Todo App.")
 })
 
 // view routers
 app.use("/", viewsRouter)
 
 // api routers
-app.use("/api/v1/todos", todoRouter)
-app.use("/api/v1/auth", authRouter)
+app.use("/api/todos", todoRouter)
+app.use("/api/auth", authRouter)
 
 app.listen(3000, () => {
-    console.log("server is running on port 3000")
+	console.log("server is running on port 3000")
 })
